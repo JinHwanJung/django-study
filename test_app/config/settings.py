@@ -38,13 +38,18 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+THIRD_PARTY_APPS = [
+    'rest_framework',
+]
 
 LOCAL_APPS = [
     'user',
+    'tests.drf_url_router',
 ]
 
 INSTALLED_APPS = []
 INSTALLED_APPS.extend(DJANGO_APPS)
+INSTALLED_APPS.extend(THIRD_PARTY_APPS)
 INSTALLED_APPS.extend(LOCAL_APPS)
 
 AUTH_USER_MODEL = 'user.User'
@@ -86,7 +91,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:'
+        'NAME': BASE_DIR / 'db.sqlite3'
+        # 'NAME': ':memory:'
     }
 }
 

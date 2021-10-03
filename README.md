@@ -2,6 +2,7 @@
 
 ## install packages
 ```bash
+$ pip install pipenv
 $ pipenv install
 ```
 
