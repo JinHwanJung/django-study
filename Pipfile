@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 pytest = "*"
 pytest-django = "*"
+django-querycount = "*"
 
 [dev-packages]
 
