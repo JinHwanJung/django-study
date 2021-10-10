@@ -40,6 +40,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'admin_honeypot',
 ]
 
 LOCAL_APPS = [

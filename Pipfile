@@ -9,6 +9,7 @@ djangorestframework = "*"
 pytest = "*"
 pytest-django = "*"
 django-querycount = "*"
+django-admin-honeypot = "*"
 
 [dev-packages]
 
