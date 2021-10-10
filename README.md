@@ -3,7 +3,7 @@ django-study is project to learn about Django and Django REST framework based on
 
 <br/>
 
-### Dependencies
+## Dependencies
 - Python 3.9.x
 - Django 3.2.x
 - djangorestframework 3.12.x
