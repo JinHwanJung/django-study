@@ -1,12 +1,17 @@
-# django study
+# django-study
+django-study is project to learn about Django and Django REST framework based on tests.
 
-## install packages
+### Dependencies
+- Python 3.9.x
+- Django 3.2.x
+
+## Install python packages
 ```bash
 $ pip install pipenv
 $ pipenv install
 ```
 
-## run test
+## Run test
 ```bash
 $ pytest
 ```
