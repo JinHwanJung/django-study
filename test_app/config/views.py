@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 
 
-def index(request):
+def index(request, *args, **kwargs):
     content = """
     <html>
     <head>

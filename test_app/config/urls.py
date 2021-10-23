@@ -1,12 +1,19 @@
-from django.contrib import admin
-from django.urls import path, include
-
+from django.urls import include, path
+from django.utils.deprecation import MiddlewareMixin
 from config.views import index
-from tests.fbv.views import items
+
+
+class HelloMiddleware(MiddlewareMixin):
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        print('Hello')
+
+
+class HelloHomeMiddleware(MiddlewareMixin):
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        print('hello index')
+
 
 urlpatterns = [
-    path('', index),
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('secret-admin/', admin.site.urls),
-    path('items', items, name='fbv_item_list'),
+    path('', index, kwargs={'middleware': HelloHomeMiddleware}),
+    path('', include('user.urls'), kwargs={'middleware': HelloMiddleware}),
 ]
