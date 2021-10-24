@@ -11,7 +11,6 @@ class RoutingMiddleware(MiddlewareMixin):
         try:
             resolver_match = request.resolver_match
         except AttributeError:
-            breakpoint()
             return []
 
         matched_middleware = []
