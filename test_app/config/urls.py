@@ -3,17 +3,22 @@ from django.utils.deprecation import MiddlewareMixin
 from config.views import index
 
 
-class HelloMiddleware(MiddlewareMixin):
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        print('Hello')
+def middleware_index(request, view_func, view_args, view_kwargs):
+    print('*' * 10)
+    print('middleware_index')
+    print(request, view_func, view_args, view_kwargs)
+    print('*'*10)
 
 
-class HelloHomeMiddleware(MiddlewareMixin):
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        print('hello index')
+def middleware_users(request, view_func, view_args, view_kwargs):
+    print('*' * 10)
+
+    print('middleware_users')
+    print(request, view_func, view_args, view_kwargs)
+    print('*'*10)
 
 
 urlpatterns = [
-    path('', index, kwargs={'middleware': HelloHomeMiddleware}),
-    path('', include('user.urls'), kwargs={'middleware': HelloMiddleware}),
+    path('', index, kwargs={'middleware': middleware_index}),
+    path('', include('user.urls'), kwargs={'middleware': middleware_users}),
 ]

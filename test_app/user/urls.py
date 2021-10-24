@@ -7,16 +7,22 @@ from user.views import UserViewSet
 router = SimpleRouter(trailing_slash=False)
 router.register('users', UserViewSet)
 
-class HelloMiddleware2(MiddlewareMixin):
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        print('Hello2')
+
+def middleware_users2(request, view_func, view_args, view_kwargs):
+    print('*' * 10)
+    print('middleware_users2')
+    print(request, view_func, view_args, view_kwargs)
+    print('*'*10)
 
 
-class HelloMiddleware3(MiddlewareMixin):
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        print('Hello3')
+def middleware_articles(request, view_func, view_args, view_kwargs):
+    print('*' * 10)
+    print('middleware_articles')
+    print(request, view_func, view_args, view_kwargs)
+    print('*'*10)
+
 
 urlpatterns = [
-    path('', include(router.urls), kwargs={'middleware': HelloMiddleware2}),
-    path('users/<int:user_id>/', include('article.urls'), kwargs={'middleware': HelloMiddleware3}),
+    path('', include(router.urls), kwargs={'middleware': middleware_users2}),
+    path('users/<int:user_id>/', include('article.urls'), kwargs={'middleware': middleware_articles}),
 ]
