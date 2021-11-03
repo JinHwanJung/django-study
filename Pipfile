@@ -6,12 +6,16 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-pytest = "*"
-pytest-django = "*"
-django-querycount = "*"
 django-admin-honeypot = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-django = "*"
+django-querycount = "*"
+pytest-factoryboy = "*"
+pytest-cov = "*"
+pytest-sugar = "*"
+pytest-asyncio = "*"
 
 [requires]
 python_version = "3.9"
