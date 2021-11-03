@@ -1,9 +1,8 @@
-from django.urls import resolve, Resolver404, URLResolver
+from django.urls import URLResolver
 from django.urls.resolvers import URLPattern
 from django.utils.deprecation import MiddlewareMixin
 
-
-MIDDLEWARE_KEY = 'middleware'
+from test_app.constants import MIDDLEWARE_KEY
 
 
 class RoutingMiddleware(MiddlewareMixin):

@@ -1,0 +1,3 @@
+TEST_APP_DIRECTORY_PREFIX = 'test_app.'
+DIVISION_LINE = '-' * 10
+MIDDLEWARE_KEY = 'middleware'

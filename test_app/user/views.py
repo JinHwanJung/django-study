@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from user.models import User
-from user.serializers import UserSerializer
+from test_app.user.models import User
+from test_app.user.serializers import UserSerializer
 
 
 class UserViewSet(ReadOnlyModelViewSet):

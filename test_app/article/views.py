@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
-from article.models import Article
-from article.serializers import ArticleSerializer
+from test_app.article.models import Article
+from test_app.article.serializers import ArticleSerializer
 
 
 class ArticleViewSet(ReadOnlyModelViewSet):

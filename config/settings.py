@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from test_app.helper import add_test_app_directory_prefix
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -51,7 +53,8 @@ LOCAL_APPS = [
 INSTALLED_APPS = []
 INSTALLED_APPS.extend(DJANGO_APPS)
 INSTALLED_APPS.extend(THIRD_PARTY_APPS)
-INSTALLED_APPS.extend(LOCAL_APPS)
+for name in LOCAL_APPS:
+    INSTALLED_APPS.append(add_test_app_directory_prefix(name))
 
 AUTH_USER_MODEL = 'user.User'
 
