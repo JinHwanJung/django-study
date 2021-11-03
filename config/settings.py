@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'base',
     'user',
     'article',
 ]
@@ -67,7 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'base.middleware.RoutingMiddleware'
+    add_test_app_directory_prefix('base.middleware.RoutingMiddleware')
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -150,11 +151,63 @@ QUERYCOUNT = {
     'THRESHOLDS': {
         'MEDIUM': 50,
         'HIGH': 200,
-        'MIN_TIME_TO_LOG':0,
-        'MIN_QUERY_COUNT_TO_LOG':0
+        'MIN_TIME_TO_LOG': 0,
+        'MIN_QUERY_COUNT_TO_LOG': 0
     },
     'IGNORE_REQUEST_PATTERNS': [],
     'IGNORE_SQL_PATTERNS': [],
     'DISPLAY_DUPLICATES': True,
     'RESPONSE_HEADER': 'X-DjangoQueryCount-Count'
+}
+
+
+LOGGING_FILE_SIZE_5MB = 1024 * 1024 * 5
+LOGGING_BACKUP_COUNT = 5
+LOGGING_FORMATTER_FORMAT1 = 'format1'
+LOGGING_FORMATTER_FORMAT2 = 'format2'
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        LOGGING_FORMATTER_FORMAT1: {
+            'format': '[%(asctime)s] %(levelname)s %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        LOGGING_FORMATTER_FORMAT2: {
+            'format': '%(levelname)s %(message)s [%(name)s:%(lineno)s]'
+        }
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR/'logs'/'info.log',
+            'encoding': 'UTF-8',
+            'maxBytes': LOGGING_FILE_SIZE_5MB,
+            'backupCount': LOGGING_BACKUP_COUNT,
+            'formatter': LOGGING_FORMATTER_FORMAT1
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': LOGGING_FORMATTER_FORMAT2
+        }
+    },
+    'loggers': {
+        'django.server': {
+            'handlers': ['file', 'console'],
+            'propagate': False,
+            'level': 'INFO'
+        },
+        'django.request': {
+            'handlers': ['file', 'console'],
+            'propagate': False,
+            'level': 'DEBUG'
+        },
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['file'],
+            'propagate': True
+        }
+    }
 }
